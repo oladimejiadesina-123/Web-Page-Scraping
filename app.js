@@ -1,11 +1,11 @@
-var express = require('express'),
+let express = require('express'),
     fs = require('fs'),
     path = require('path'),
     request = require('request'),
     cheerio = require('cheerio'),
     app = express(),
     bodyParser = require('body-parser'),
-    env  = process.env;
+    PORT  = process.env.PORT || 3000;
 
 //support parsing of application/json type post data
 app.use(bodyParser.json());
@@ -80,7 +80,9 @@ app.post('/scrape', function(req, res){
 });
 
 //listen for an HTTP request
-app.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost');
+app.listen(PORT, () => {
+    console.log(`Navigate your brower to: http://localhost:${PORT}`);
+
+});
 
 //just so we know the server is running
-console.log('Navigate your brower to: http://localhost:3000');
